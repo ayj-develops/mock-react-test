@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ChangeTitle from '../utils/ChangeTitle';
+import ChangeTitle from '../utils/changeTitle.utils';
 
 function Page404() {
   ChangeTitle('404 Not Found');

@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Nav';
-import ChangeTitle from '../utils/ChangeTitle';
+import ChangeTitle from '../utils/changeTitle.utils';
 
 function Home() {
   ChangeTitle('Home');
