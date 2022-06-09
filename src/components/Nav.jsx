@@ -37,54 +37,40 @@ export const NavbarRoutes = [
 
 function Navbar({ logoUrl }) {
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <Link className="navbar-item" to="/">
-          <img alt="" src={logoUrl} width="auto  " height="28" />
+    <nav className="navbar navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <Link to="/">
+          <img alt="" src={logoUrl} width="auto  " height="48" className="p-1" />
         </Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            {
+              NavbarRoutes.map((obj) => (
+                obj.isDropdown ? null : <li className="nav-item"><Link className="nav-link" to={obj.route}>{obj.name}</Link></li>
+              ))
+            }
 
-        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-        </a>
-      </div>
-
-      <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
-          {
-            NavbarRoutes.map((obj) => (
-              obj.isDropdown ? null : <Link className="navbar-item" to={obj.route}>{obj.name}</Link>
-            ))
-          }
-
-          <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">
-              More
-            </a>
-
-            <div className="navbar-dropdown">
-              {
-                NavbarRoutes.map((obj) => (
-                  obj.isDropdown ? <Link className="navbar-item" to={obj.route}>{obj.name}</Link> : null
-                ))
-              }
-              <hr className="navbar-divider" />
-              <a className="navbar-item">
-                Report an issue
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                More
               </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <Link to="/login" className="button is-primary">
-                <strong>Log in</strong>
-              </Link>
-            </div>
-          </div>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                {
+                  NavbarRoutes.map((obj) => (
+                    obj.isDropdown ? <li><Link className="dropdown-item" to={obj.route}>{obj.name}</Link></li> : null
+                  ))
+                }
+                <li><hr className="dropdown-divider" /></li>
+                <li><a className="dropdown-item" href="#">Report an Issue</a></li>
+              </ul>
+            </li>
+          </ul>
+          <Link className="text-decoration-none" to="/login">
+            <button className="btn btn-outline-primary" type="button">Login</button>
+          </Link>
         </div>
       </div>
     </nav>

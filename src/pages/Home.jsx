@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Nav';
-import ChangeTitle from '../seo/ChangeTitle';
+import ChangeTitle from '../utils/ChangeTitle';
 
 function Home() {
   ChangeTitle('Home');
@@ -10,11 +10,12 @@ function Home() {
   return (
     <div className="homepage p-5">
       <Navbar logoUrl={LOGO_URL} />
-      <div className="container">
-        <div className="notification is-warning">
+      <div className="container py-5">
+        <div className="alert alert-warning alert-dismissible fade show" role="alert">
           The UI (User interface) here does not represent the final product.
           In fact, this is only a mockup of the front-end UI.
           However, it is complete in functionality.
+          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" />
         </div>
 
 

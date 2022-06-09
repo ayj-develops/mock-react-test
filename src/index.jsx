@@ -1,6 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'bulma/css/bulma.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap';
+import $ from 'jquery';
+import Popper from 'popper.js';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
