@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
 import $ from 'jquery';
 import Popper from 'popper.js';
-import App from './App';
+import App from './routes/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -35,12 +36,14 @@ export const NavbarRoutes = [
   },
 ];
 
-function Navbar({ logoUrl }) {
+const LOGO_URL = `${process.env.PUBLIC_URL}/ayjImage.png`;
+
+function CustomNavbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
         <Link to="/">
-          <img alt="" src={logoUrl} width="auto  " height="48" className="p-1" />
+          <img alt="" src={LOGO_URL} width="auto  " height="48" className="p-1" />
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
@@ -68,12 +71,9 @@ function Navbar({ logoUrl }) {
               </ul>
             </li>
           </ul>
-          <Link className="text-decoration-none" to="/login">
-            <button className="btn btn-outline-primary" type="button">Login</button>
-          </Link>
         </div>
       </div>
     </nav>
   );
 }
-export default Navbar;
+export default CustomNavbar;

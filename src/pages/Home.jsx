@@ -1,15 +1,14 @@
 import React from 'react';
-import Navbar from '../components/Nav';
+import CustomNavbar from '../components/Nav';
 import ChangeTitle from '../utils/changeTitle.utils';
+import { signInWithGoogle } from '../utils/firebase.utils';
 
 function Home() {
   ChangeTitle('Home');
 
-  const LOGO_URL = `${process.env.PUBLIC_URL}/ayjImage.png`;
-
   return (
     <div className="homepage p-5">
-      <Navbar logoUrl={LOGO_URL} />
+      <CustomNavbar />
       <div className="container py-5">
         <div className="alert alert-warning alert-dismissible fade show" role="alert">
           The UI (User interface) here does not represent the final product.
@@ -17,12 +16,9 @@ function Home() {
           However, it is complete in functionality.
           <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" />
         </div>
-
-
-        {/*
-            TODO: try out auth here
-        */}
-
+        <button type="button" onClick={signInWithGoogle} className="btn btn-primary">
+          Login
+        </button>
       </div>
     </div>
   );
