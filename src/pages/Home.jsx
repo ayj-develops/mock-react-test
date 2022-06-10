@@ -1,7 +1,6 @@
 import React from 'react';
 import CustomNavbar from '../components/Nav';
 import ChangeTitle from '../utils/changeTitle.utils';
-import { signInWithGoogle } from '../utils/firebase.utils';
 
 function Home() {
   ChangeTitle('Home');
@@ -16,9 +15,7 @@ function Home() {
           However, it is complete in functionality.
           <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" />
         </div>
-        <button type="button" onClick={signInWithGoogle} className="btn btn-primary">
-          Login
-        </button>
+
       </div>
     </div>
   );

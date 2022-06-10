@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { signInWithGoogle } from '../utils/firebase.utils';
 
 export const NavbarRoutes = [
   {
@@ -71,6 +72,7 @@ function CustomNavbar() {
               </ul>
             </li>
           </ul>
+          <button className="btn btn-outline-primary" onClick={signInWithGoogle} type="button">Login</button>
         </div>
       </div>
     </nav>
