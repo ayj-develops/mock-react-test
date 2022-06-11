@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { signInWithGoogle } from '../utils/firebase.utils';
+import { useUserAuth } from '../routes/UserAuthContext';
 
 export const NavbarRoutes = [
   {
@@ -40,6 +40,8 @@ export const NavbarRoutes = [
 const LOGO_URL = `${process.env.PUBLIC_URL}/ayjImage.png`;
 
 function CustomNavbar() {
+  const { signInWithGoogle } = useUserAuth();
+
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
