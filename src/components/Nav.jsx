@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useUserAuth } from '../routes/UserAuthContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../routes/AuthContextProvider';
 
 export const NavbarRoutes = [
   {
@@ -40,7 +40,20 @@ export const NavbarRoutes = [
 const LOGO_URL = `${process.env.PUBLIC_URL}/ayjImage.png`;
 
 function CustomNavbar() {
-  const { signInWithGoogle } = useUserAuth();
+  const {
+    loginWithGoogle, logout, currentUser,
+  } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    await loginWithGoogle();
+    navigate('/');
+  };
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
@@ -74,7 +87,9 @@ function CustomNavbar() {
               </ul>
             </li>
           </ul>
-          <button className="btn btn-outline-primary" onClick={signInWithGoogle} type="button">Login</button>
+          {
+            currentUser ? <button className="btn btn-outline-primary" onClick={handleLogout} type="button">Logout</button> : <button className="btn btn-outline-primary" onClick={handleLogin} type="button">Login</button>
+          }
         </div>
       </div>
     </nav>
