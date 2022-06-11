@@ -1,18 +1,9 @@
 import React from 'react';
-import CustomNavbar from '../components/Nav';
-import ChangeTitle from '../utils/changeTitle.utils';
 
-function Clubs() {
-  ChangeTitle('Clubs');
-
+function ClubsPage() {
   return (
-    <div className="homepage p-5">
-      <CustomNavbar />
-      <div className="container py-5">
-
-      </div>
-    </div>
+    <h1>{' '}</h1>
   );
 }
 
-export default Club;
+export default ClubsPage;

@@ -20,6 +20,8 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'no-multiple-empty-lines': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/jsx-no-constructed-context-values': 'off',
     'jsx-a11y/label-has-associated-control': [
       'off',
       {

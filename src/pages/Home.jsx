@@ -15,7 +15,6 @@ function Home() {
           However, it is complete in functionality.
           <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" />
         </div>
-
       </div>
     </div>
   );
