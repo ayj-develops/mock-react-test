@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import {
+  Navbar, Dropdown, Avatar, Button,
+} from 'flowbite-react';
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../routes/AuthContextProvider';
@@ -56,43 +59,87 @@ function CustomNavbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
-      <div className="container-fluid">
-        <Link to="/">
-          <img alt="" src={LOGO_URL} width="auto  " height="48" className="p-1" />
-        </Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {
-              NavbarRoutes.map((obj) => (
-                obj.isDropdown ? null : <li className="nav-item"><Link className="nav-link" to={obj.route}>{obj.name}</Link></li>
-              ))
-            }
+    <Navbar
+      fluid
+      rounded
+    >
+      <Navbar.Brand href="https://flowbite.com/">
+        <img
+          src="./ayjImage.png"
+          className="mr-3 h-6 sm:h-9"
+          alt="AYJ Logo"
+        />
+        <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">
+          AYJ Clubs
+        </span>
+      </Navbar.Brand>
+      <div className="flex md:order-2">
+        {currentUser ? (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={<Avatar alt="User settings" img={currentUser ? currentUser.photoURL : ''} rounded />}
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">
+                {currentUser ? currentUser.displayName : ''}
+              </span>
+              <span className="block truncate text-sm font-medium">
+                {currentUser ? currentUser.email : ''}
+              </span>
+            </Dropdown.Header>
+            <Dropdown.Item>
+              Dashboard
+            </Dropdown.Item>
+            <Dropdown.Item>
+              Settings
+            </Dropdown.Item>
+            <Dropdown.Item>
+              Earnings
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item>
+              <button onClick={handleLogout} type="button">Logout</button>
+            </Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <div className="flex md:order-2">
+            <Button>
+              <button onClick={handleLogin} type="button">Login</button>
 
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                More
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                {
-                  NavbarRoutes.map((obj) => (
-                    obj.isDropdown ? <li><Link className="dropdown-item" to={obj.route}>{obj.name}</Link></li> : null
-                  ))
-                }
-                <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="#">Report an Issue</a></li>
-              </ul>
-            </li>
-          </ul>
-          {
-            currentUser ? <button className="btn btn-outline-primary" onClick={handleLogout} type="button">Logout</button> : <button className="btn btn-outline-primary" onClick={handleLogin} type="button">Login</button>
-          }
-        </div>
+            </Button>
+            <Navbar.Toggle />
+          </div>
+        )}
+
+
+        <Navbar.Toggle />
       </div>
-    </nav>
+      <Navbar.Collapse>
+        <Navbar.Link
+          href="/"
+          active
+        >
+          <h1 className="text-2xl">Home</h1>
+
+        </Navbar.Link>
+        <Navbar.Link href="/navbars">
+          <h1 className="text-2xl">Clubs</h1>
+        </Navbar.Link>
+        <Navbar.Link href="/navbars">
+          <h1 className="text-2xl">Events</h1>
+        </Navbar.Link>
+        <Navbar.Link href="/navbars">
+          <h1 className="text-2xl">New</h1>
+        </Navbar.Link>
+        <Navbar.Link href="/navbars">
+          <h1 className="text-2xl">Contact</h1>
+        </Navbar.Link>
+        <Navbar.Link href="/navbars">
+          <h1 className="text-2xl">Staff</h1>
+        </Navbar.Link>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 export default CustomNavbar;

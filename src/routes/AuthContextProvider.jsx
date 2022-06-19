@@ -15,6 +15,7 @@ export const useAuth = () => useContext(AuthContext);
 // provides auth wrapper
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
+  const [currentIdToken, setCurrentIdToken] = useState();
 
   // sets restrictions on the auth provider (only tdsb domains can login)
   const provider = new GoogleAuthProvider();
@@ -38,10 +39,15 @@ export function AuthProvider({ children }) {
   const getCurrentUser = () => auth.currentUser;
 
 
+
+
   // sets the updated user everytime a component loads
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      auth.currentUser.getIdToken(true).then((idToken) => {
+        setCurrentIdToken(idToken);
+      });
     });
 
     return () => unsubscribe();
@@ -50,7 +56,7 @@ export function AuthProvider({ children }) {
   // wrap children in the auth provider so each child can access the user context
   return (
     <AuthContext.Provider value={{
-      currentUser, getCurrentUser, loginWithGoogle, logout,
+      currentUser, getCurrentUser, currentIdToken, loginWithGoogle, logout,
     }}
     >
       {children}
