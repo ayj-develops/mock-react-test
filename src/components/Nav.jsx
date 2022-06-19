@@ -7,39 +7,6 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../routes/AuthContextProvider';
 
-export const NavbarRoutes = [
-  {
-    name: 'Home',
-    route: '/',
-    isDropdown: false,
-  },
-  {
-    name: 'Clubs',
-    route: '/clubs',
-    isDropdown: false,
-  },
-  {
-    name: 'News',
-    route: '/news',
-    isDropdown: false,
-  },
-  {
-    name: 'Staff',
-    route: '/staff',
-    isDropdown: true,
-  },
-  {
-    name: 'All events',
-    route: '/events',
-    isDropdown: true,
-  },
-  {
-    name: 'Contact Us',
-    route: '/contact',
-    isDropdown: true,
-  },
-];
-
 const LOGO_URL = `${process.env.PUBLIC_URL}/ayjImage.png`;
 
 function CustomNavbar() {
@@ -89,13 +56,10 @@ function CustomNavbar() {
               </span>
             </Dropdown.Header>
             <Dropdown.Item>
-              Dashboard
+              <Link to="">My Favorites</Link>
             </Dropdown.Item>
             <Dropdown.Item>
-              Settings
-            </Dropdown.Item>
-            <Dropdown.Item>
-              Earnings
+              <Link to="">Settings</Link>
             </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item>
