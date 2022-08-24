@@ -1,44 +1,73 @@
-/* eslint-disable indent */
+import React, { useState } from 'react';
+import {
+  BrowserRouter as Router, Routes, Route, useNavigate,
+} from 'react-router-dom';
+import {
+  Button, Card,
+} from 'flowbite-react';
+// import { MdCancel } from 'react-icons/md';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import CustomNavbar from '../components/Nav';
+import CustomNavBar from '../components/Nav';
+import ChangeTitle from '../utils/changeTitle.utils';
+// import { useAuth } from '../routes/AuthContextProvider';
+// import Loading from '../components/Loading';
 
+// const api = Axios.create({
+//   baseURL: `https://localhost:8000/api/v0`
+// })
+
+// const HERO_URL = `${process.env.PUBLIC_URL}/hero_image.png`;
+// const EMOJI_URL = `${process.env.PUBLIC_URL}/wave.png`;
 
 function ClubsPage() {
-  const [allClubData, setAllClubData] = useState([]);
+  return (
+    <Router>
+      <Routes>
+        <Route path="/clubs" element={<Main />} />
+        <Route path="/clubs/:slug" element={<ClubSite />} />
+      </Routes>
+    </Router>
+  );
+}
 
-  const getClubsInfo = async () => {
-    const response = await axios.get('http://localhost:8000/api/v0/club');
-    setAllClubData(response.data);
+function Main() {
+  ChangeTitle('Clubs');
+
+  const [masterList, setMasterList] = useState([]);
+
+  const navigate = useNavigate();
+  const routeChange = (slug) => {
+    const path = `/clubs/:${slug}`;
+    navigate(path);
   };
 
-  useEffect(() => {
-    getClubsInfo();
-  }, [allClubData.length]);
+  axios.get('http://localhost:8000/api/v0/clubs').then((res) => {
+    setMasterList(res.data.map((item) => (
+      <Card imgSrc="https://flowbite.com/docs/images/blog/image-1.jpg">
+        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white flex justify-between">
+          <h1>{item.name}</h1>
+        </h5>
+        <p className="font-normal text-gray-700 dark:text-gray-400">{item.description}</p>
+        <Button type="submit" onClick={() => routeChange(item.slug)}>Visit Club</Button>
+      </Card>
+    )));
+  });
 
   return (
-    <div className="homepage p-5">
-      <div className="container">
-        <div className="pb-3">
-          <CustomNavbar />
-        </div>
-        <h1>All Clubs</h1>
-        {
-          allClubData === undefined ? (
-            <h3>Oops. Something went wrong, no clubs exist </h3>) : allClubData.map((club) => (
-              <div className="py-2">
-                <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-title">{club.name}</h5>
-                    <p className="card-text">{club.description}</p>
-                    <a href="/" className="btn btn-primary">Visit</a>
-                  </div>
-                </div>
-              </div>
-            ))
-        }
+    <div className="px-4 max-w-screen-xl lg:px-12 lg:justify-between lg:items-center">
+      <CustomNavBar />
+      <div className="py-11">
+        <ul id="clubList" className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-4 gap-y-4">
+          {masterList}
+        </ul>
       </div>
     </div>
+  );
+}
+
+function ClubSite() {
+  return (
+    <div> hello world </div>
   );
 }
 
