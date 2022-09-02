@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable no-restricted-globals */
 import {
   Navbar, Dropdown, Avatar, Button,
 } from 'flowbite-react';
@@ -70,8 +71,8 @@ function CustomNavbar() {
             </Dropdown>
           ) : (
             <div className="flex md:order-2">
-              <Button>
-                <button onClick={handleLogin} type="button">Login</button>
+              <Button onClick={handleLogin} type="submit">
+                Login
 
               </Button>
             </div>
@@ -83,12 +84,15 @@ function CustomNavbar() {
         <Navbar.Collapse>
           <Navbar.Link
             href="/"
-            active
+            active={location.pathname === '/'}
           >
             <h1 className="text-xl">Home</h1>
 
           </Navbar.Link>
-          <Navbar.Link href="/navbars">
+          <Navbar.Link
+            href="/clubs"
+            active={location.pathname === '/clubs'}
+          >
             <h1 className="text-xl">Clubs</h1>
           </Navbar.Link>
           <Navbar.Link href="/navbars">

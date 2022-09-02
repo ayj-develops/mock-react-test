@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ClubPage from '../pages/Club';
 import ClubsPage from '../pages/Clubs';
 import Page404 from '../pages/Errors';
 import Home from '../pages/Home';
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/clubs" element={<ClubsPage />} />
+            <Route path="/clubs/:id" element={<ClubPage />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </Router>

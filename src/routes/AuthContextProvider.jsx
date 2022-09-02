@@ -14,9 +14,9 @@ export const useAuth = () => useContext(AuthContext);
 
 // provides auth wrapper
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [currentIdToken, setCurrentIdToken] = useState();
+  const [currentIdToken, setCurrentIdToken] = useState(null);
 
   // sets restrictions on the auth provider (only tdsb domains can login)
   const provider = new GoogleAuthProvider();
@@ -46,7 +46,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      setLoggedIn(!loggedIn);
+      setLoggedIn(!!user);
       auth.currentUser.getIdToken(true).then((idToken) => {
         setCurrentIdToken(idToken);
       });
