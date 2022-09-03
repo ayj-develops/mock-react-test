@@ -8,11 +8,13 @@ module.exports = {
     'airbnb',
   ],
   parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
+      modules: true,
     },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+
   },
   plugins: [
     'react',
@@ -20,6 +22,7 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'no-multiple-empty-lines': 'off',
+    'import/no-named-as-default': 'off',
     'react/destructuring-assignment': 'off',
     'react/jsx-no-constructed-context-values': 'off',
     'jsx-a11y/label-has-associated-control': [
