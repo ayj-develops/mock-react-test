@@ -65,11 +65,11 @@ function ClubsPage(props) {
 
 
   return (
-    <div className="px-4 max-w-screen-xl lg:px-12 lg:justify-between lg:items-center">
+    <div className="px-4 lg:px-36 lg:justify-between lg:items-center">
       <CustomNavBar />
       {isLoading ? <NotAuthd /> : (
         <div className="wrapper">
-          <div className="py-3">
+          <div className="py-3 px-4">
             <div className="flex justify-between">
               <h2 className="text-4xl mt-11 font-bold">
                 All Clubs
@@ -85,7 +85,7 @@ function ClubsPage(props) {
               )}
             </div>
             {isListView ? (<h1>list view</h1>) : (
-              <div className="pt-12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-x-4 gap-y-4 auto-rows-max">
+              <div className="pt-12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-x-4 gap-y-4 auto-rows-max">
                 {clubs.map((club) => (
                   <div key={club._id}>
                     <div className="max-w-lg">

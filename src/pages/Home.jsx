@@ -41,10 +41,10 @@ function Home() {
 
   return (
     <div className="container mx-auto min-h-screen">
-      <div className="px-4 max-w-screen-xl lg:px-12 lg:justify-between lg:items-center">
+      <div className="px-4 lg:px-36 lg:justify-between lg:items-center">
         <CustomNavbar />
       </div>
-      <div className="container mx-auto px-14 pt-6">
+      <div className="container mx-auto px-4 lg:px-36 pt-6">
         {loggedIn ? (
           <div className="py-8 lg:px-4">
             <h1 className="mb-4 text-6xl">

@@ -89,11 +89,11 @@ function ClubPage() {
   }, [authToken]);
 
   return (
-    <div className="px-4 max-w-screen-xl lg:px-12 lg:justify-between lg:items-center">
+    <div className="px-4 lg:px-36 lg:justify-between lg:items-center">
       <CustomNavBar />
       {isLoading ? <NotAuthd />
         : (
-          <div className="wrapper">
+          <div className="wrapper px-4">
             {isFetching ? <Loading /> : (
               <div className="wrapper">
                 <div className="py-3">
