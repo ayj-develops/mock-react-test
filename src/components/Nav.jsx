@@ -43,7 +43,7 @@ function CustomNavbar() {
             AYJ Clubs
           </span>
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        <div className="flex md:order-2 z-50">
           {currentUser ? (
             <Dropdown
               arrowIcon={false}
